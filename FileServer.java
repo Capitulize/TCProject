@@ -10,6 +10,8 @@ public class FileServer{
     Socket sock = serSock.accept();//returns socket used for specific slient
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
+    File file = new FIle("aye.txt");//change to whatever
+    
     
   }
   
@@ -20,6 +22,8 @@ public class FileServer{
 
     int fLength = (int)fileLength;//had to typecast to put into byte array
     byte[] fileByte= new byte[fLength];
+    buffIn.read(fileByte,0,fLength);
+    outPut.write(fileByte);
     
   }
   
