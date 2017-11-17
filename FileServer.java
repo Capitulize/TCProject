@@ -10,7 +10,7 @@ public class FileServer{
     Socket sock = serSock.accept();//returns socket used for specific slient
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
-    File file = new FIle("aye.txt");//change to whatever
+    File file = new File("aye.txt");//change to whatever
     
     
   }
