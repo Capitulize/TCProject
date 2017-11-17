@@ -15,8 +15,12 @@ public class FileServer{
   
   private void byteStream(File file) throws IOException{
     int fileLength = file.length();
-    FileInputStream input1 = new FileInputStream(file);
-    //BufferedInputStream
+    FileInputStream fInput = new FileInputStream(file);
+    BufferedInputStream buffIn = new BufferedInputStream(fInput);
+
+    int fLength = (int)fileLength;//had to typecast to put into byte array
+    byte[] fileByte= new byte[fLength];
+    
   }
   
 }
