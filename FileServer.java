@@ -10,13 +10,26 @@ public class FileServer{
     Socket sock = serSock.accept();//returns socket used for specific slient
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
-    File file = new File("aye.txt");//change to whatever
+    File file1 = new File("aye.txt");//change to whatever
+    String choice;
+    outPut = sock.getOutputStream();
+    BufferedReader inFromClient = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+    choice = inFromClient.readLine();//lets client choose what file to receive
+    
+    if(choice.equals(""))
+      System.exit(0);
+    if(choice.equals("1"))//Add as many choices as there are files to send
+       byteStream(file1);
+    
+    sock.close();
+    serSock.close();
+                                                     
     
     
   }
   
   private void byteStream(File file) throws IOException{
-    int fileLength = file.length();
+    long fileLength = file.length();
     FileInputStream fInput = new FileInputStream(file);
     BufferedInputStream buffIn = new BufferedInputStream(fInput);
 
