@@ -11,6 +11,8 @@ public class FileServer{
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
     File file1 = new File("aye.txt");//change to whatever
+    
+    sendFileNames();//sends a list of available files to the client upon connection
     String choice;
     outPut = sock.getOutputStream();
     BufferedReader inFromClient = new BufferedReader(new InputStreamReader(sock.getInputStream()));
@@ -38,6 +40,11 @@ public class FileServer{
     buffIn.read(fileByte,0,fLength);
     outPut.write(fileByte);
     
+  }
+  private static void sendFileNames() throws IOException{
+    DataOutputStream outToCLient - newDataOutputStream(socket.getOutputStream());
+    String fileList = "Available Files:  (1)"+file1.getName;//add for however many files there are
+    outToClient.writeBytes(fileList+"\n");
   }
   
 }
