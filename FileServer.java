@@ -11,7 +11,7 @@ public class FileServer{
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
     File file1 = new File("aye.txt");//change to whatever
-    
+    //Add additional files here
     sendFileNames();//sends a list of available files to the client upon connection
     String choice;
     outPut = sock.getOutputStream();
@@ -20,8 +20,13 @@ public class FileServer{
     
     if(choice.equals(""))
       System.exit(0);
-    if(choice.equals("1"))//Add as many choices as there are files to send
+   else if(choice.equals("1"))
        byteStream(file1);
+    /*
+    * Add however many other files to send here
+    */
+    else
+      invalidIn();//Sends invalid input message to client upon receiving a request for a nonexistent file
     
     sock.close();
     serSock.close();
@@ -42,9 +47,14 @@ public class FileServer{
     
   }
   private static void sendFileNames() throws IOException{
-    DataOutputStream outToCLient - newDataOutputStream(socket.getOutputStream());
+    DataOutputStream outToCLient = newDataOutputStream(socket.getOutputStream());
     String fileList = "Available Files:  (1)"+file1.getName;//add for however many files there are
     outToClient.writeBytes(fileList+"\n");
+  }
+  private static void invalidIn() throws IOException{
+    DataOutputStream outToCLient = newDataOutputStream(socket.getOutputStream());
+    String invalid = "Invalid input. Please select another file to receive.";
+    outToClient.writeBytes(invalid+"\n"); 
   }
   
 }
