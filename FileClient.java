@@ -8,6 +8,12 @@ public static void main(String args[]){
         Socket socket = new Socket(InetAddress.getByName("localhost"), 55555);
         byte[] fileBytes = new byte[10000];
   InputStream is = socket.getInputStream();
+  
+  //Receive file names from server
+  BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+  String files = inFromServer.readLine();
+  System.out.println(files);
+  
   //Send choice to FileServer
   BufferedReader inFromUser = new BufferedReader(new InputStreamRead(System.in));
   DataOutputStrem outToServer = new DataOutputStream(socket.getOutputStream());
