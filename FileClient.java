@@ -25,29 +25,34 @@ public static void main(String args[]){
         FileOutputStream fileOut;//creates new file
         if(choice.equals(""))
           System.exit(0);
-        if(choice.equals("1")){
+        else if(choice.equals("1")){
           fileOut = new FileOutputStream("C:\\...nameOfNewFile1.txt");
           BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
           
           //buffOut.write(fileBytes);
           buffOut.flush();
         }
-        if(choice.equals("2")){
+        else if(choice.equals("2")){
           fileOut = new FileOutputStream("C:\\...nameOfNewFile2.txt");
           BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
           
           //buffOut.write(fileBytes);
           buffOut.flush();
         }
-        if(choice.equals("3")){
+       else if(choice.equals("3")){
           fileOut = new FileOutputStream("C:\\...nameOfNewFile3.txt");
           BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
           
           //buffOut.write(fileBytes);
           buffOut.flush();
         }
-      System.out.println("File saved successfully.");
-  
+        else{
+          inFromServer=newBufferedReader(new InputStreamReader(socket.getInputStream())));
+          String invalid = inFromServer.readLine();
+          System.out.println(invalid);
+        }
+  socket.close();
+    
         
   }
 }
