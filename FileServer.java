@@ -11,6 +11,8 @@ public class FileServer{
     
     InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
     File file1 = new File("aye.txt");//change to whatever
+    File file2 = new File("cray.txt");
+    File file3 = new File("day.txt");
     //Add additional files here
     sendFileNames();//sends a list of available files to the client upon connection
     String choice;
@@ -22,6 +24,10 @@ public class FileServer{
       System.exit(0);
    else if(choice.equals("1"))
        byteStream(file1);
+    else if (choice.equals("2"))
+      byteStream(file2);
+    else if (choice.equals("3"))
+      byteStream(file3);
     /*
     * Add however many other files to send here
     */
@@ -44,6 +50,7 @@ public class FileServer{
     byte[] fileByte= new byte[fLength];
     buffIn.read(fileByte,0,fLength);
     outPut.write(fileByte);
+    
     
   }
   private static void sendFileNames() throws IOException{
