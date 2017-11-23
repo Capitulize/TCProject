@@ -8,6 +8,7 @@ public static void main(String args[]){
         Socket socket = new Socket(InetAddress.getByName("localhost"), 55555);
         byte[] fileBytes = new byte[10000];
   InputStream is = socket.getInputStream();
+  System.out.println("Connected.");
   
   //Receive file names from server
   BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -45,7 +46,7 @@ public static void main(String args[]){
           //buffOut.write(fileBytes);
           buffOut.flush();
         }
-      
+      System.out.println("File saved successfully.");
   
         
   }
