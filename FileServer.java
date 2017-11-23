@@ -9,7 +9,6 @@ public class FileServer{
     ServerSocket serSock = new ServerSocket(45000);
     Socket sock = serSock.accept();//returns socket used for specific slient
     
-    InetAddress adr = InetAddress.getByName("localhost");//change name to whatever is needed
     File file1 = new File("aye.txt");//change to whatever
     File file2 = new File("cray.txt");
     File file3 = new File("day.txt");
