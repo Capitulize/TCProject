@@ -5,7 +5,7 @@ public class FileClient{
 public static void main(String args[]){
   
   //Initialize socket
-        Socket socket = new Socket(InetAddress.getByName("localhost"), 55555);
+        Socket socket = new Socket(InetAddress.getByName("localhost"), 55555);//change to whatever the Server's name or IP address is
         byte[] fileBytes = new byte[10000];
   InputStream is = socket.getInputStream();
   System.out.println("Connected.");
