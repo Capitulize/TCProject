@@ -16,7 +16,7 @@ public static void main(String args[]){
   System.out.println(files);
   
   //Send choice to FileServer
-  BufferedReader inFromUser = new BufferedReader(new InputStreamRead(System.in));
+  BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
   DataOutputStrem outToServer = new DataOutputStream(socket.getOutputStream());
   String choice = inFromUser.readLine();
   outToServer.writeBytes(choice+'\n');
