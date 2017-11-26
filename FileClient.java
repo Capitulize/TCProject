@@ -1,69 +1,81 @@
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
+public class FileClient {
 
-public class FileClient{
-public static void main(String args[]) throws IOException{
-  
-	//Initialize requirements
-	byte[] contents = new byte[10000];
-	int bytesRead = 0;
-	
-  //Initialize socket
-  Socket socket = new Socket(InetAddress.getByName("localhost"), 45000);//change to whatever the Server's name or IP address is
-        
-  System.out.println("Connected.");
-  
-  //Receive file names from server
-  
-  BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-  String files = inFromServer.readLine();
-  System.out.println(files);
-  
-  //Send choice to FileServer
-  BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-  DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
-  String choice = inFromUser.readLine();
-  outToServer.writeBytes(choice+'\n');
-  InputStream is = socket.getInputStream();
-  
- //Initialize in  choice "if" statements as to prevent empty files from being created
-        FileOutputStream fileOut;//creates new file
-        while((bytesRead=is.read(contents))!=-1) {
-        if(choice.equals(""))
-          System.exit(0);
-        else if(choice.equals("1")){
-          fileOut = new FileOutputStream("nameOfNewFile1.txt");
-          BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
-          buffOut.write(contents, 0, bytesRead);
-          //buffOut.write(fileBytes);
-          buffOut.close();
-          buffOut.flush();
+    static Socket socket;
+    static Socket socket2;
+
+    public static void main(String[] args) throws Exception {
+        socket2 = new Socket(InetAddress.getLocalHost(), 50016);
+            BufferedReader inFromServer;
+            printFiles();
+
+        while (true) {
+            socket = new Socket(InetAddress.getLocalHost(), 50015);
+
+            InputStream is = socket.getInputStream();
+
+            byte[] contents = new byte[10000];
+            BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+
+            DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
+            System.out.print("Enter the number next to one of the file names to receive it.(Enter nothing to terminate the program): ");
+            String sentence = inFromUser.readLine();
+            outToServer.writeBytes(sentence + '\n');
+
+            FileOutputStream fos;
+
+            int bytesRead = 0;
+            if (sentence.equals("")) {
+                break;
+                //System.exit(0);
+            } else if (sentence.equals("1")) {
+                File file = new File("XD2.txt");
+                fos = new FileOutputStream(file);
+                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                while ((bytesRead = is.read(contents)) > 0) {
+                    bos.write(contents, 0, bytesRead);
+                }
+                System.out.println("File saved to "+file.getAbsolutePath()+"\n");
+
+                bos.flush();
+            } else if (sentence.equals("2")) {
+                File file = new File("Pride and Prejudice 2.txt");
+                fos = new FileOutputStream(file);
+                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                while ((bytesRead = is.read(contents)) > 0) {
+                    bos.write(contents, 0, bytesRead);
+                }
+                System.out.println("File saved to "+file.getAbsolutePath()+"\n");
+
+                bos.flush();
+            } else if (sentence.equals("3")) {
+                File file = new File("Lmao2.txt");
+                fos = new FileOutputStream(file);
+                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                while ((bytesRead = is.read(contents)) > 0) {
+                    bos.write(contents, 0, bytesRead);
+                }
+                System.out.println("File saved to "+file.getAbsolutePath()+"\n");
+
+                bos.flush();
+            } else {
+                inFromServer
+                        = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                String invalid = inFromServer.readLine();
+                System.out.println(invalid);
+            }
         }
-        else if(choice.equals("2")){
-          fileOut = new FileOutputStream("nameOfNewFile2.txt");
-          BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
-          buffOut.write(contents, 0, bytesRead);
-          //buffOut.write(fileBytes);
-          buffOut.close();
-          buffOut.flush();
-        }
-       else if(choice.equals("3")){
-          fileOut = new FileOutputStream("nameOfNewFile3.txt");
-          BufferedOutputStream buffOut = new BufferedOutputStream(fileOut);
-          buffOut.write(contents, 0, bytesRead);
-          //buffOut.write(fileBytes);
-          buffOut.close();
-          buffOut.flush();
-        }
-        else{
-          inFromServer= new BufferedReader(new InputStreamReader(socket.getInputStream()));
-          String invalid = inFromServer.readLine();
-          System.out.println(invalid);
-        }
-        }
+
         socket.close();
-    
-        
-  }
+    }
+
+    private static void printFiles() throws IOException {
+       BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+
+        String files = inFromServer.readLine();
+        System.out.println(files+"\n");
+    }
 }
