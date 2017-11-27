@@ -107,8 +107,9 @@ public class FileClient {
     
     /*
     *   printFile is the method used to print the available files that are available from the FileServer.
-    *   @param inFromServer     BufferedReader that reads the file names from the FileServer.
-    *   @param files            String that collects all the files in one string. Prints afterwards.
+    *   Variables:
+    *   inFromServer     BufferedReader that reads the file names from the FileServer.
+    *   files            String that collects all the files in one string. Prints afterwards.
     */
 
     private static void printFiles() throws IOException {
