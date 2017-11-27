@@ -21,7 +21,7 @@ public class FileClient {
     static Socket socket;
     static Socket socket2;
     /*
-     * Main method runs here, most of program contained in while loop to be able to request mutliple files, file names are printed.
+     * Main method runs here, most of program contained in while loop to be able to request multiple files, file names are printed.
      */
     public static void main(String[] args) throws Exception {
             //Socket 2 is defined, BufferedReader is initialized, printFiles is the method that prints available files to download.
