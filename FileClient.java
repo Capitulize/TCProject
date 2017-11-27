@@ -12,8 +12,8 @@ import java.net.*;
    /*
     * This program was developed by William and Steven to be used as a file transfer system in TCP.
     * This java class file specific purpose is to create a link, and send requests to the server to obtain files in their entirety.
-    * @param socket     The initialization of the socket to connect to FileServer and see available files.
-    * @param socket2    The initialization of the second socket to be able to send request and download.
+    * @param socket     The initialization of the second socket to be able to send request and download.
+    * @param socket2    The initialization of the socket to connect to FileServer and see available files.
     */
 public class FileClient {
     //Initialization of sockets
