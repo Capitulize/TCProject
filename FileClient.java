@@ -9,6 +9,7 @@
 ***************************************************************************************/
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
    /*
     * This program was developed by William and Steven to be used as a file transfer system in TCP.
     * This java class file specific purpose is to create a link, and send requests to the server to obtain files in their entirety.
@@ -24,14 +25,17 @@ public class FileClient {
      * Main method runs here, most of program contained in while loop to be able to request multiple files, file names are printed.
      */
     public static void main(String[] args) throws Exception {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the IP Address of the server: ");
+            String s = sc.nextLine();
             //Socket 2 is defined, BufferedReader is initialized, printFiles is the method that prints available files to download.
-            socket2 = new Socket(InetAddress.getLocalHost(), 50016);
+            socket2 = new Socket(s, 50016);
             BufferedReader inFromServer;
             printFiles();
     //While loop that performs the main function of the program, sending and receiving files.
         while (true) {
             //Socket is defined.
-            socket = new Socket(InetAddress.getLocalHost(), 50015);
+            socket = new Socket(s, 50015);
             InputStream is = socket.getInputStream();
             
             //Byte array is initialized and defined here to be able to print to file.
